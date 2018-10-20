@@ -21,14 +21,27 @@ def show
 	@todo = Todo.find(params[:id])
 end
 
+def edit
+	@todo = Todo.find(params[:id])
+end
+
+def update
+	@todo = Todo.find(params[:id])
+	if @todo = Todo.update(todo_params)
+	flash[:notice] = "Todo was updated"
+	redirect_to todo_path(@todo)
+else
+	render 'edit'
+end	
+end
+
+
 
 	private
 	def todo_params
 		params.require(:todo).permit(:name, :description)
 	end
 
-	def find_todo
-
-	end
+	
 
 end
